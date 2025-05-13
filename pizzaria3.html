@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVADATASP - Pizzaria Artesanal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .pizza-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .pizza-img {
+            transition: all 0.3s ease;
+        }
+        
+        .pizza-card:hover .pizza-img {
+            transform: scale(1.05);
+        }
+        
+        .size-btn.active {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .floating-whatsapp {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-3">ND</div>
+                <h1 class="text-2xl font-bold text-red-600">NOVADATASP</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-800 hover:text-red-600 font-medium">Início</a>
+                <a href="#menu" class="text-gray-800 hover:text-red-600 font-medium">Cardápio</a>
+                <a href="#about" class="text-gray-800 hover:text-red-600 font-medium">Sobre</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+            <a href="#home" class="block py-2 text-gray-800 hover:text-red-600">Início</a>
+            <a href="#menu" class="block py-2 text-gray-800 hover:text-red-600">Cardápio</a>
+            <a href="#about" class="block py-2 text-gray-800 hover:text-red-600">Sobre</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero pt-32 pb-20 text-white text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-on-scroll">As melhores pizzas da região</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-on-scroll">Feitas com ingredientes selecionados e muito amor</p>
+            <a href="#menu" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 animate-on-scroll">Ver Cardápio</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Nosso Cardápio</h2>
+            
+            <!-- Traditional Pizzas -->
+            <div class="mb-16 animate-on-scroll">
+                <h3 class="text-2xl font-semibold mb-8 text-red-600 border-b-2 border-red-600 pb-2 inline-block">Tradicionais</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Pizza 1 -->
+                    <div class="pizza-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1381&q=80" alt="Margherita" class="w-full h-full object-cover pizza-img">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2 text-gray-800">Margherita</h4>
+                            <p class="text-gray-600 mb-4">Molho de tomate, mussarela especial, manjericão fresco e azeite de oliva.</p>
+                            <p class="text-2xl font-bold text-red-600 mb-4">R$ 39,90</p>
+                            <div class="flex space-x-2 mb-4">
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="P">P</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="M">M</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm active" data-size="G">G</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="GG">GG</button>
+                            </div>
+                            <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium transition duration-300 whatsapp-btn" data-pizza="Margherita">
+                                <i class="fab fa-whatsapp mr-2"></i> Pedir via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Pizza 2 -->
+                    <div class="pizza-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80" alt="Calabresa" class="w-full h-full object-cover pizza-img">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2 text-gray-800">Calabresa</h4>
+                            <p class="text-gray-600 mb-4">Molho de tomate, mussarela, calabresa artesanal fatiada e cebola roxa.</p>
+                            <p class="text-2xl font-bold text-red-600 mb-4">R$ 42,90</p>
+                            <div class="flex space-x-2 mb-4">
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="P">P</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm active" data-size="M">M</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="G">G</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="GG">GG</button>
+                            </div>
+                            <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium transition duration-300 whatsapp-btn" data-pizza="Calabresa">
+                                <i class="fab fa-whatsapp mr-2"></i> Pedir via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Pizza 3 -->
+                    <div class="pizza-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Quatro Queijos" class="w-full h-full object-cover pizza-img">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2 text-gray-800">Quatro Queijos</h4>
+                            <p class="text-gray-600 mb-4">Molho de tomate, mussarela, provolone, parmesão e gorgonzola.</p>
+                            <p class="text-2xl font-bold text-red-600 mb-4">R$ 45,90</p>
+                            <div class="flex space-x-2 mb-4">
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="P">P</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="M">M</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm active" data-size="G">G</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="GG">GG</button>
+                            </div>
+                            <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium transition duration-300 whatsapp-btn" data-pizza="Quatro Queijos">
+                                <i class="fab fa-whatsapp mr-2"></i> Pedir via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Special Pizzas -->
+            <div class="mb-16 animate-on-scroll">
+                <h3 class="text-2xl font-semibold mb-8 text-red-600 border-b-2 border-red-600 pb-2 inline-block">Especiais</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Pizza 1 -->
+                    <div class="pizza-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1422&q=80" alt="Frango com Catupiry" class="w-full h-full object-cover pizza-img">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2 text-gray-800">Frango com Catupiry</h4>
+                            <p class="text-gray-600 mb-4">Molho de tomate, mussarela, frango desfiado e catupiry cremoso.</p>
+                            <p class="text-2xl font-bold text-red-600 mb-4">R$ 49,90</p>
+                            <div class="flex space-x-2 mb-4">
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="P">P</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="M">M</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm active" data-size="G">G</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="GG">GG</button>
+                            </div>
+                            <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium transition duration-300 whatsapp-btn" data-pizza="Frango com Catupiry">
+                                <i class="fab fa-whatsapp mr-2"></i> Pedir via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Pizza 2 -->
+                    <div class="pizza-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Portuguesa" class="w-full h-full object-cover pizza-img">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2 text-gray-800">Portuguesa</h4>
+                            <p class="text-gray-600 mb-4">Molho de tomate, mussarela, presunto, ovos, cebola, azeitonas e pimentão.</p>
+                            <p class="text-2xl font-bold text-red-600 mb-4">R$ 47,90</p>
+                            <div class="flex space-x-2 mb-4">
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="P">P</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm active" data-size="M">M</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="G">G</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="GG">GG</button>
+                            </div>
+                            <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium transition duration-300 whatsapp-btn" data-pizza="Portuguesa">
+                                <i class="fab fa-whatsapp mr-2"></i> Pedir via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Pizza 3 -->
+                    <div class="pizza-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pepperoni" class="w-full h-full object-cover pizza-img">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2 text-gray-800">Pepperoni</h4>
+                            <p class="text-gray-600 mb-4">Molho de tomate, mussarela e pepperoni importado em fatias.</p>
+                            <p class="text-2xl font-bold text-red-600 mb-4">R$ 52,90</p>
+                            <div class="flex space-x-2 mb-4">
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="P">P</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="M">M</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm active" data-size="G">G</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="GG">GG</button>
+                            </div>
+                            <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium transition duration-300 whatsapp-btn" data-pizza="Pepperoni">
+                                <i class="fab fa-whatsapp mr-2"></i> Pedir via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sweet Pizzas -->
+            <div class="animate-on-scroll">
+                <h3 class="text-2xl font-semibold mb-8 text-red-600 border-b-2 border-red-600 pb-2 inline-block">Doces</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Pizza 1 -->
+                    <div class="pizza-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1557&q=80" alt="Romeu e Julieta" class="w-full h-full object-cover pizza-img">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2 text-gray-800">Romeu e Julieta</h4>
+                            <p class="text-gray-600 mb-4">Mussarela, goiabada cremosa e queijo Minas frescal.</p>
+                            <p class="text-2xl font-bold text-red-600 mb-4">R$ 38,90</p>
+                            <div class="flex space-x-2 mb-4">
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="P">P</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm active" data-size="M">M</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="G">G</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="GG">GG</button>
+                            </div>
+                            <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium transition duration-300 whatsapp-btn" data-pizza="Romeu e Julieta">
+                                <i class="fab fa-whatsapp mr-2"></i> Pedir via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Pizza 2 -->
+                    <div class="pizza-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1435&q=80" alt="Chocolate com Morango" class="w-full h-full object-cover pizza-img">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2 text-gray-800">Chocolate com Morango</h4>
+                            <p class="text-gray-600 mb-4">Chocolate ao leite derretido e morangos frescos.</p>
+                            <p class="text-2xl font-bold text-red-600 mb-4">R$ 44,90</p>
+                            <div class="flex space-x-2 mb-4">
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="P">P</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="M">M</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm active" data-size="G">G</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="GG">GG</button>
+                            </div>
+                            <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium transition duration-300 whatsapp-btn" data-pizza="Chocolate com Morango">
+                                <i class="fab fa-whatsapp mr-2"></i> Pedir via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Pizza 3 -->
+                    <div class="pizza-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1601924582970-9238bcb495d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1388&q=80" alt="Banana com Canela" class="w-full h-full object-cover pizza-img">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2 text-gray-800">Banana com Canela</h4>
+                            <p class="text-gray-600 mb-4">Banana caramelizada, açúcar mascavo e canela em pó.</p>
+                            <p class="text-2xl font-bold text-red-600 mb-4">R$ 36,90</p>
+                            <div class="flex space-x-2 mb-4">
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="P">P</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm active" data-size="M">M</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="G">G</button>
+                                <button class="size-btn border border-gray-300 px-3 py-1 rounded-full text-sm" data-size="GG">GG</button>
+                            </div>
+                            <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium transition duration-300 whatsapp-btn" data-pizza="Banana com Canela">
+                                <i class="fab fa-whatsapp mr-2"></i> Pedir via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-red-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-12 animate-on-scroll">
+                    <h2 class="text-3xl font-bold mb-6">Sobre a NOVADATASP</h2>
+                    <p class="mb-4 text-lg">Desde 2010, a NOVADATASP vem encantando clientes com suas pizzas artesanais feitas com ingredientes selecionados e muito carinho.</p>
+                    <p class="mb-4 text-lg">Nossa massa é preparada diariamente com farinha especial e fermentação natural, garantindo leveza e sabor incomparáveis.</p>
+                    <p class="mb-4 text-lg">Trabalhamos apenas com fornecedores locais e selecionados a dedo, priorizando sempre a qualidade e frescor dos ingredientes.</p>
+                    <p class="text-lg">Venha conhecer o verdadeiro sabor da pizza artesanal!</p>
+                </div>
+                <div class="lg:w-1/2 animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Pizzaria NOVADATASP" class="w-full rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">NOVADATASP</h3>
+                    <p class="text-gray-400">Rua das Pizzas, 123 - Centro</p>
+                    <p class="text-gray-400">São Paulo - SP</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 NOVADATASP - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5511999999999?text=Olá%20NOVADATASP,%20gostaria%20de%20fazer%20um%20pedido!" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-lg hover:bg-green-600 transition duration-300 floating-whatsapp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Size selection
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons in this group
+                this.parentNode.querySelectorAll('.size-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-red-600', 'text-white');
+                    b.classList.add('border', 'border-gray-300');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active', 'bg-red-600', 'text-white');
+                this.classList.remove('border', 'border-gray-300');
+            });
+        });
+        
+        // WhatsApp button functionality
+        document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const pizza = this.getAttribute('data-pizza');
+                const sizeBtn = this.parentNode.querySelector('.size-btn.active');
+                const size = sizeBtn ? sizeBtn.getAttribute('data-size') : 'M';
+                
+                const message = `Olá NOVADATASP! Gostaria de pedir uma pizza ${pizza} tamanho ${size}.`;
+                const encodedMessage = encodeURIComponent(message);
+                window.open(`https://wa.me/5511999999999?text=${encodedMessage}`, '_blank');
+            });
+        });
+        
+        // Scroll animation
+        function checkScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('load', checkScroll);
+        window.addEventListener('scroll', checkScroll);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
